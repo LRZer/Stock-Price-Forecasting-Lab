@@ -4,7 +4,7 @@
 
 本项目是教学实验，不产生交易信号。历史测试中偶有单一模型超过简单基线，但**按验证集选出的主要候选在三只股票的滚动测试中均未超过多数方向基线**。完整逐模型指标和逐日结果可从下方进入。
 
-> [全部测试结果与指标](RESULTS_INDEX.md) · [全部结果图像](RESULTS_GALLERY.md) · [20 类直接分类网络](NEURAL_CLASSIFIERS.md) · [8 种现代结构](MODERN_DIRECTION_MODELS.md) · [问题诊断与对照实验](IMPROVEMENT_REPORT.md)
+> 详细资料：[全部测试结果与指标](docs/results/RESULTS_INDEX.md) · [全部结果图像](docs/results/RESULTS_GALLERY.md)
 
 ## 一眼看懂这个任务
 
@@ -37,7 +37,7 @@
 | 8 类现代结构的轻量分类改编 | `dlinear-direction`、`tsmixer-direction`、`patchtst-direction`、`itransformer-direction`、`nhits-direction`、`tide-direction`、`timesnet-direction`、`mamba-style-direction`。这些改编不等于原论文完整实现，最后一种也不是官方 Mamba。 |
 | 同日期比较对象 | `train-majority`（多数方向）、`logit-window`（逻辑回归）、`gbdt-window`（梯度提升树）。 |
 
-现代结构的原论文链接、改编范围和逐项成绩见[现代结构说明](MODERN_DIRECTION_MODELS.md)。主要结论事先固定比较六个候选：`train-majority`、`logit-window`、`gbdt-window`、`gru`、`tcn-residual`、`gru-attention`。其余网络用于认识结构和观察现象；不要根据测试成绩反选赢家。
+现代结构的原论文链接、改编范围和逐项成绩见[现代结构说明](docs/results/MODERN_DIRECTION_MODELS.md)。主要结论事先固定比较六个候选：`train-majority`、`logit-window`、`gbdt-window`、`gru`、`tcn-residual`、`gru-attention`。其余网络用于认识结构和观察现象；不要根据测试成绩反选赢家。
 
 ## 主要测试结果
 
@@ -49,7 +49,7 @@
 | AAPL | `gbdt-window` | 67/148 = 45.3% | 82/148 = 55.4% | 159/300 = 53.0% | 161/300 = 53.7% |
 | TSLA | `logit-window` | 76/148 = 51.4% | 79/148 = 53.4% | 145/300 = 48.3% | 151/300 = 50.3% |
 
-换股票检查沿用相同六候选与选模规则：ACN 为 68/148 = 45.9%（基线 71/148 = 48.0%），RMD 为 74/148 = 50.0%（基线 73/148 = 49.3%）。GOOG 固定期多猜对 7 天，但滚动合计少猜对 1 天；新股票一负一正。目前**没有跨股票、跨时期稳定超过简单基线的证据**。成对 5 日区块重抽样的描述性区间见[改进报告](IMPROVEMENT_REPORT.md)，不是未来收益保证。
+换股票检查沿用相同六候选与选模规则：ACN 为 68/148 = 45.9%（基线 71/148 = 48.0%），RMD 为 74/148 = 50.0%（基线 73/148 = 49.3%）。GOOG 固定期多猜对 7 天，但滚动合计少猜对 1 天；新股票一负一正。目前**没有跨股票、跨时期稳定超过简单基线的证据**。成对 5 日区块重抽样的描述性区间见[改进报告](docs/results/IMPROVEMENT_REPORT.md)，不是未来收益保证。
 
 8 种现代结构属于看过 2025 年结果后补充的回顾性教学实验。验证选模的固定期正确天数为 GOOG 90、AAPL 79、TSLA 67（同期基线 85、82、79）；滚动三轮合计为 167、165、157（同期基线 162、161、151）。这些数字不能替代未来未见日期的独立检验，也不改变已冻结的六候选评测规则。
 
@@ -63,9 +63,9 @@
 | AAPL | 3.531 / 3.541 | 95/184 / 98/184 |
 | TSLA | 8.692 / 8.469 | 100/184 / 93/184 |
 
-价格任务的 MAE 越低越好；AAPL 的改善约 0.26%，TSLA 所选模型比基线差约 2.63%。旧版涨跌任务的 TSLA 多对 7 天，但 Brier 概率误差仍略高于基线。详情和局限见[价格分析](ANALYSIS.md)与[方向结果](DIRECTION_RESULTS.md)。
+价格任务的 MAE 越低越好；AAPL 的改善约 0.26%，TSLA 所选模型比基线差约 2.63%。旧版涨跌任务的 TSLA 多对 7 天，但 Brier 概率误差仍略高于基线。详情和局限见[价格分析](docs/archive/ANALYSIS.md)与[方向结果](docs/archive/DIRECTION_RESULTS.md)。
 
-**查看全部数值：**[指标索引](RESULTS_INDEX.md)列出每只股票、每个模型的准确率、平衡准确率、Brier、预测上涨比例与对应图像，并链接所有逐轮 `metrics.csv`、`predictions.csv`、`confusion.csv`、`calibration.csv`。原有价格预测的 MAE、RMSE、MAPE 见[价格网络比较](NEURAL_COMPARISON.md)与[价格分析](ANALYSIS.md)；GRU 特征/窗口/种子对照见[改进报告](IMPROVEMENT_REPORT.md)。
+**查看全部数值：**[指标索引](docs/results/RESULTS_INDEX.md)列出每只股票、每个模型的准确率、平衡准确率、Brier、预测上涨比例与对应图像，并链接所有逐轮 `metrics.csv`、`predictions.csv`、`confusion.csv`、`calibration.csv`。原有价格预测的 MAE、RMSE、MAPE 见[价格网络比较](docs/archive/NEURAL_COMPARISON.md)与[价格分析](docs/archive/ANALYSIS.md)；GRU 特征/窗口/种子对照见[改进报告](docs/results/IMPROVEMENT_REPORT.md)。
 
 ### 结果图示例
 
@@ -79,7 +79,7 @@
 | --- | --- |
 | ![GOOG 现代结构诊断](runs/modern-direction/fixed-2025/goog/diagnostics.png) | ![RMD 外部检查诊断](runs/external-symbol-check/rmd/diagnostics.png) |
 
-[全部结果图像目录](RESULTS_GALLERY.md)可点击查看公开仓库中的每一张图，包括全部模型与滚动各折图；不需要重新训练即可阅读。
+[全部结果图像目录](docs/results/RESULTS_GALLERY.md)可点击查看公开仓库中的每一张图，包括全部模型与滚动各折图；不需要重新训练即可阅读。
 
 ## 本地运行与复现
 
@@ -105,7 +105,7 @@ python -m stocklab.modern_direction --mode fixed-2025 --tickers GOOG
 python -m stocklab.ablation_study
 ```
 
-训练全部网络需要更久；原始权重文件不提交到仓库，已保存的指标、逐日预测和图像足以审阅历史测试。旧版收盘价预测可从 `python -m stocklab.cli list-models` 和 `python -m stocklab.cli compare --ticker GOOG` 入手。各命令的参数与完整实验解释见[20 类网络报告](NEURAL_CLASSIFIERS.md)、[现代结构报告](MODERN_DIRECTION_MODELS.md)和[结果索引](RESULTS_INDEX.md)。
+训练全部网络需要更久；原始权重文件不提交到仓库，已保存的指标、逐日预测和图像足以审阅历史测试。旧版收盘价预测可从 `python -m stocklab.cli list-models` 和 `python -m stocklab.cli compare --ticker GOOG` 入手。各命令的参数与完整实验解释见[20 类网络报告](docs/results/NEURAL_CLASSIFIERS.md)、[现代结构报告](docs/results/MODERN_DIRECTION_MODELS.md)和[结果索引](docs/results/RESULTS_INDEX.md)。
 
 未来真正未见交易日的评测已按[冻结规则](FUTURE_EVAL_PROTOCOL.md)预先写定，并以[代码与数据哈希](FUTURE_CODE_HASHES.json)锁定。`python -m stocklab.prospective_check` 只检查是否已积累足够新交易日；条件满足后才按协议执行一次评测。这里不把已查看的 2025/2026 年成绩说成新证据。
 
@@ -117,6 +117,9 @@ python -m stocklab.ablation_study
 | `scripts/`、`tests/` | 下载、报告核验、汇总与测试。 |
 | `data/` | 来源记录与数据说明；股票 CSV 在本地下载，不随公开仓库分发。 |
 | `runs/` | 已保存的指标、逐日预测、混淆矩阵、概率校准、图像和配置；权重文件不公开。 |
-| 根目录的报告 | [全部结果](RESULTS_INDEX.md)、[图像](RESULTS_GALLERY.md)、[数据口径](DATA_PROVENANCE.md)、[改进分析](IMPROVEMENT_REPORT.md)、[路线图](ROADMAP.md)。 |
+| `docs/results/` | [完整指标](docs/results/RESULTS_INDEX.md)、[全部图像](docs/results/RESULTS_GALLERY.md)与当前模型报告。 |
+| `docs/archive/` | 较早的价格预测、方向换算和 2026 年回顾性分析。 |
+| `docs/methods/` | [外部股票检查规则](docs/methods/EXTERNAL_CHECK_PROTOCOL.md)和[后续计划](docs/methods/ROADMAP.md)。 |
+| 根目录的三个技术说明 | [数据口径](DATA_PROVENANCE.md)、[未来评测规则](FUTURE_EVAL_PROTOCOL.md)、[冻结记录](FUTURE_FREEZE_CHANGELOG.md)；它们的路径与内容由哈希清单固定。 |
 
 本项目从 [huseinzol05/Stock-Prediction-Models](https://github.com/huseinzol05/Stock-Prediction-Models) 的教学思路出发；早期笔记本原项目采用 Apache-2.0，见[许可证](LICENSE)。当前 PyTorch 模型、统一评测与报告是独立整理的教学实现。原始旧笔记本未放入这个公开仓库，可在上游查看。日线来源、`Close` 与 `Adj Close` 的区别，以及历史价格可能修订的局限，见[数据来源与口径](DATA_PROVENANCE.md)。

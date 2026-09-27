@@ -129,8 +129,8 @@ def main() -> None:
         "旧版价格模型换算涨跌准确率的结果仍单独保留在 [NEURAL_DIRECTION.md](NEURAL_DIRECTION.md)。",
         "",
     ])
-    path = ROOT / "NEURAL_CLASSIFIERS.md"
-    path.write_text("\n".join(lines), encoding="utf-8")
+    from scripts.document_links import write_report
+    path = write_report(ROOT, "NEURAL_CLASSIFIERS.md", "\n".join(lines))
     print(f"Saved: {path}")
 
 

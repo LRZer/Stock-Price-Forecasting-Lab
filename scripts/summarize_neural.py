@@ -79,7 +79,8 @@ def main() -> None:
         "2026 年的 OHLCV 特征实验使用另一套数据与模型，应分别阅读 `ANALYSIS.md`。",
         "",
     ]
-    (ROOT / "NEURAL_COMPARISON.md").write_text("\n".join(lines), encoding="utf-8")
+    from scripts.document_links import write_report
+    write_report(ROOT, "NEURAL_COMPARISON.md", "\n".join(lines))
     print(f"Saved 54 neural results and summary; selected: {selected}")
 
 

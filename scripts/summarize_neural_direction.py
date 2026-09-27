@@ -107,7 +107,8 @@ def main() -> None:
               "`runs/neural-direction-selected.csv`。所有模型的验证准确率、",
               "测试平衡准确率与预测上涨比例见 `runs/neural-direction-comparison.csv`。",
               "该 2025 年测试时期已被多次查看，这是一份回顾性学习报告。", ""]
-    (ROOT / "NEURAL_DIRECTION.md").write_text("\n".join(lines), encoding="utf-8")
+    from scripts.document_links import write_report
+    write_report(ROOT, "NEURAL_DIRECTION.md", "\n".join(lines))
     print(chosen.to_string(index=False, float_format=lambda x: f"{x:.3f}"))
 
 

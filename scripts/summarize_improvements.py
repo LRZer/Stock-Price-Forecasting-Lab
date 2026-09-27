@@ -223,8 +223,8 @@ def main() -> None:
         "`stocklab.external_symbol_check` 默认保护原始外部结果，不重复覆盖。",
         "",
     ])
-    path = ROOT / "IMPROVEMENT_REPORT.md"
-    path.write_text("\n".join(lines), encoding="utf-8")
+    from scripts.document_links import write_report
+    path = write_report(ROOT, "IMPROVEMENT_REPORT.md", "\n".join(lines))
     print(f"Saved: {path}")
 
 
