@@ -1,0 +1,3 @@
+ticker,mode,primary_correct_days,primary_accuracy,primary_selected_models,selected_correct_days,baseline_correct_days,test_days,selected_accuracy,baseline_accuracy,selected_models
+ACN,fixed-2025,68,0.459459,gbdt-window,68,71,148,0.459459,0.479730,gbdt-window
+RMD,fixed-2025,74,0.500000,gru-attention,74,73,148,0.500000,0.493243,gru-attention

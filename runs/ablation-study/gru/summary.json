@@ -1,0 +1,49 @@
+{
+  "purpose": "exploratory sensitivity, not model selection on test data",
+  "architecture": "gru",
+  "hidden_size": 32,
+  "epochs_max": 20,
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "windows": [
+    5,
+    20
+  ],
+  "feature_sets": {
+    "close-return": [
+      0
+    ],
+    "ohlcv": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "common_target_dates": "all variants start with a 20-day series; 5-day inputs slice its final 5 days",
+  "folds": "three expanding chronological folds, each with 100 validation and 100 test days",
+  "device": "cuda",
+  "sources": [
+    {
+      "ticker": "GOOG",
+      "path": "data/raw/GOOG.csv",
+      "sha256": "438e09df68b9470b83a58753202ba0b6e41e0397831dba70c678a849bb30b2d6"
+    },
+    {
+      "ticker": "AAPL",
+      "path": "data/raw/AAPL.csv",
+      "sha256": "0418f42fad680a35dd515392053a82d991a679e480ed602665ac72921e7bb69c"
+    },
+    {
+      "ticker": "TSLA",
+      "path": "data/raw/TSLA.csv",
+      "sha256": "1d75338f5b3b3d36868a3d687194b3575f308b724fa5d4e4b29c6778c1a3d884"
+    }
+  ],
+  "test_note": "2025 data have been inspected; do not select a winner by these scores"
+}

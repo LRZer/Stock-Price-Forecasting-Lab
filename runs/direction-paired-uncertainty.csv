@@ -1,0 +1,9 @@
+period,ticker,selected_by_validation,first_date,last_date,test_days,selected_correct_days,baseline_correct_days,accuracy_gain,block_bootstrap_95pct_low,block_bootstrap_95pct_high
+fixed-2025,GOOG,gru-attention,2025-06-02,2025-12-31,148,92,85,0.047297,-0.013514,0.121622
+rolling-2025,GOOG,"gru,gbdt-window,gru-attention",2024-10-21,2025-12-31,300,161,162,-0.003333,-0.070000,0.063333
+fixed-2025,AAPL,gbdt-window,2025-06-02,2025-12-31,148,67,82,-0.101351,-0.182432,-0.033784
+rolling-2025,AAPL,"train-majority,logit-window,logit-window",2024-10-21,2025-12-31,300,159,161,-0.006667,-0.053333,0.043333
+fixed-2025,TSLA,logit-window,2025-06-02,2025-12-31,148,76,79,-0.020270,-0.175676,0.128378
+rolling-2025,TSLA,"train-majority,gru,tcn-residual",2024-10-21,2025-12-31,300,145,151,-0.020000,-0.096667,0.043333
+external-symbol-check,ACN,gbdt-window,2025-06-02,2025-12-31,148,68,71,-0.020270,-0.114865,0.060811
+external-symbol-check,RMD,gru-attention,2025-06-02,2025-12-31,148,74,73,0.006757,-0.114865,0.114865

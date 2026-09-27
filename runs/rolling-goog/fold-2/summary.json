@@ -1,0 +1,57 @@
+{
+  "task": "next observed trading day close from the preceding history window",
+  "selected_by_validation_mae": "gru",
+  "data_file": "data/raw/GOOG.csv",
+  "data_sha256": "438e09df68b9470b83a58753202ba0b6e41e0397831dba70c678a849bb30b2d6",
+  "rows": 1003,
+  "lookback": 20,
+  "splits": {
+    "train": {
+      "targets": 683,
+      "dates": [
+        "2022-02-01",
+        "2024-10-18"
+      ]
+    },
+    "validation": {
+      "targets": 100,
+      "dates": [
+        "2024-10-21",
+        "2025-03-17"
+      ]
+    },
+    "test": {
+      "targets": 100,
+      "dates": [
+        "2025-03-18",
+        "2025-08-08"
+      ]
+    }
+  },
+  "scaler": {
+    "mean_from_train_only": 130.14490611664297,
+    "std_from_train_only": 25.54644087421362
+  },
+  "settings": {
+    "rolling_fold": 2,
+    "rolling_folds": 3,
+    "validation_size": 100,
+    "test_size": 100,
+    "models": [
+      "naive",
+      "ridge",
+      "gru",
+      "attention-is-all-you-need"
+    ],
+    "seed": 42,
+    "device": "cuda",
+    "epochs_max": 15
+  },
+  "versions": {
+    "torch": "2.6.0+cu118",
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "sklearn": "1.5.0"
+  },
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU"
+}

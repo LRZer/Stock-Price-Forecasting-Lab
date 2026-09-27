@@ -1,0 +1,18 @@
+*DS_Store
+*ipynb_checkpoints
+*__pycache__
+*.py[cod]
+.pytest_cache/
+.venv/
+# Keep diagnostic images in diagnostics/models/, but omit trained weights.
+*.pt
+*.joblib
+# The upstream market-data repository does not state redistribution terms.
+# Download these small teaching slices locally using scripts/download_data.py.
+data/raw/*.csv
+data/external-check/*.csv
+# The 2026 source CSV was deleted earlier; keep its derived daily archive local.
+runs/feature-study/holdout-2026/
+runs/direction-study/retrospective-2026/
+# Original notebooks remain on the user's computer; link to their Apache-2.0 source.
+legacy/

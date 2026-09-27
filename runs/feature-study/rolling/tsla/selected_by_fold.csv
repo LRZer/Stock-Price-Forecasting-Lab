@@ -1,0 +1,4 @@
+fold,test_start,test_end,selected_by_validation,selected_test_mae,naive_test_mae
+1,2024-10-21,2025-03-17,ridge-close,12.094761,12.034300
+2,2025-03-18,2025-08-08,naive,9.526000,9.526000
+3,2025-08-11,2025-12-31,naive,9.744900,9.744900

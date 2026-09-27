@@ -1,0 +1,77 @@
+{
+  "task": "next observed trading day close from the preceding history window",
+  "selected_by_validation_mae": "bidirectional-lstm",
+  "data_file": "data/raw/AAPL.csv",
+  "data_sha256": "0418f42fad680a35dd515392053a82d991a679e480ed602665ac72921e7bb69c",
+  "rows": 1003,
+  "lookback": 20,
+  "splits": {
+    "train": {
+      "targets": 688,
+      "dates": [
+        "2022-02-01",
+        "2024-10-25"
+      ]
+    },
+    "validation": {
+      "targets": 147,
+      "dates": [
+        "2024-10-28",
+        "2025-05-30"
+      ]
+    },
+    "test": {
+      "targets": 148,
+      "dates": [
+        "2025-06-02",
+        "2025-12-31"
+      ]
+    }
+  },
+  "scaler": {
+    "mean_from_train_only": 174.43738700564973,
+    "std_from_train_only": 25.494122693300785
+  },
+  "settings": {
+    "models": [
+      "naive",
+      "ridge",
+      "hist-gbdt",
+      "stacked",
+      "lstm",
+      "bidirectional-lstm",
+      "lstm-2path",
+      "gru",
+      "bidirectional-gru",
+      "gru-2path",
+      "vanilla",
+      "bidirectional-vanilla",
+      "vanilla-2path",
+      "lstm-seq2seq",
+      "bidirectional-lstm-seq2seq",
+      "lstm-seq2seq-vae",
+      "gru-seq2seq",
+      "bidirectional-gru-seq2seq",
+      "gru-seq2seq-vae",
+      "attention-is-all-you-need",
+      "cnn-seq2seq",
+      "dilated-cnn-seq2seq"
+    ],
+    "seed": 42,
+    "device": "cuda",
+    "epochs_max": 15,
+    "batch_size": 64,
+    "hidden_size": 32,
+    "learning_rate": 0.001,
+    "patience": 5,
+    "train_fraction": 0.7,
+    "validation_fraction": 0.15
+  },
+  "versions": {
+    "torch": "2.6.0+cu118",
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "sklearn": "1.5.0"
+  },
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU"
+}

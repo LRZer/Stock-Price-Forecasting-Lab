@@ -1,0 +1,13 @@
+{
+  "frozen_at": "2026-09-27",
+  "files": {
+    "data/raw/GOOG.csv": "438e09df68b9470b83a58753202ba0b6e41e0397831dba70c678a849bb30b2d6",
+    "data/raw/AAPL.csv": "0418f42fad680a35dd515392053a82d991a679e480ed602665ac72921e7bb69c",
+    "data/raw/TSLA.csv": "1d75338f5b3b3d36868a3d687194b3575f308b724fa5d4e4b29c6778c1a3d884"
+  },
+  "removed_2026_context_sha256": {
+    "GOOG": "d6ad4c788f809ec04ffafec9e3961f8b21c902eb588fd55c193f98b0b6113c83",
+    "AAPL": "ac8cf50da796bbf90ea1fe87f9aa9033f2f56171e64058cde18b09e65be3ee73",
+    "TSLA": "e798f33843da88d9b871f72cb926673fcea88b32b4be486633ffd96e22d2e554"
+  }
+}

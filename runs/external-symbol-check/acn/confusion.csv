@@ -1,0 +1,7 @@
+model,true_non_up,false_up,missed_up,true_up,actual_up_days,predicted_up_days,up_recall,non_up_recall
+train-majority,0,77,0,71,71,148,1.000000,0.000000
+logit-window,37,40,40,31,71,71,0.436620,0.480519
+gbdt-window,38,39,41,30,71,69,0.422535,0.493506
+gru,30,47,32,39,71,86,0.549296,0.389610
+tcn-residual,44,33,47,24,71,57,0.338028,0.571429
+gru-attention,21,56,30,41,71,97,0.577465,0.272727

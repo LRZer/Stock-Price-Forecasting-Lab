@@ -1,0 +1,5 @@
+model,validation_mae,validation_rmse,test_mae,test_rmse,test_mape_pct,test_mae_improvement_vs_naive_pct,epochs_run,seconds,device
+attention-is-all-you-need,2.459222,3.409626,2.621162,3.558449,1.120985,-0.013795,15,0.489592,cuda
+naive,2.484900,3.419833,2.620800,3.549075,1.120386,0.000000,0,0.000012,cpu
+gru,2.530838,3.443095,2.635852,3.542194,1.126033,-0.574312,9,1.870467,cuda
+ridge,2.630452,3.504412,2.781310,3.608514,1.184966,-6.124464,0,0.002176,cpu

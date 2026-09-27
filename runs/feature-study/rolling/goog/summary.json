@@ -1,0 +1,90 @@
+{
+  "ticker": "GOOG",
+  "mode": "exploratory_rolling_2025",
+  "sources": [
+    {
+      "path": "data/raw/GOOG.csv",
+      "sha256": "438e09df68b9470b83a58753202ba0b6e41e0397831dba70c678a849bb30b2d6"
+    }
+  ],
+  "close_features": [
+    "return_1d",
+    "return_5d",
+    "return_20d",
+    "volatility_5d"
+  ],
+  "ohlcv_features": [
+    "return_1d",
+    "return_5d",
+    "return_20d",
+    "volatility_5d",
+    "overnight_gap",
+    "intraday_return",
+    "daily_range",
+    "close_location",
+    "log_volume_vs_20d"
+  ],
+  "splits": [
+    {
+      "train": {
+        "targets": 582,
+        "first_date": "2022-02-02",
+        "last_date": "2024-05-28"
+      },
+      "validation": {
+        "targets": 100,
+        "first_date": "2024-05-29",
+        "last_date": "2024-10-18"
+      },
+      "test": {
+        "targets": 100,
+        "first_date": "2024-10-21",
+        "last_date": "2025-03-17"
+      }
+    },
+    {
+      "train": {
+        "targets": 682,
+        "first_date": "2022-02-02",
+        "last_date": "2024-10-18"
+      },
+      "validation": {
+        "targets": 100,
+        "first_date": "2024-10-21",
+        "last_date": "2025-03-17"
+      },
+      "test": {
+        "targets": 100,
+        "first_date": "2025-03-18",
+        "last_date": "2025-08-08"
+      }
+    },
+    {
+      "train": {
+        "targets": 782,
+        "first_date": "2022-02-02",
+        "last_date": "2025-03-17"
+      },
+      "validation": {
+        "targets": 100,
+        "first_date": "2025-03-18",
+        "last_date": "2025-08-08"
+      },
+      "test": {
+        "targets": 100,
+        "first_date": "2025-08-11",
+        "last_date": "2025-12-31"
+      }
+    }
+  ],
+  "models": [
+    "naive",
+    "ridge-close",
+    "ridge-ohlcv",
+    "gbdt-close",
+    "gbdt-ohlcv"
+  ],
+  "selection_rule": "lowest validation price MAE per fold",
+  "mean_selected_test_mae": 3.023641601929029,
+  "mean_naive_test_mae": 2.9828999999999994
+}

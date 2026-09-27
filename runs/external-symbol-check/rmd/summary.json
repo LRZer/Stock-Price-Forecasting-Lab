@@ -1,0 +1,87 @@
+{
+  "task": "P(next trading close > current close)",
+  "unchanged_close_rule": "non-up class",
+  "decision_threshold": 0.5,
+  "feature_names": [
+    "close_log_return",
+    "overnight_gap",
+    "intraday_return",
+    "high_extension",
+    "low_extension",
+    "log_volume_change"
+  ],
+  "lookback": 20,
+  "models": [
+    "train-majority",
+    "logit-window",
+    "gbdt-window",
+    "gru",
+    "tcn-residual",
+    "gru-attention"
+  ],
+  "selected_by_validation": "gru-attention",
+  "primary_candidates": [
+    "train-majority",
+    "logit-window",
+    "gbdt-window",
+    "gru",
+    "tcn-residual",
+    "gru-attention"
+  ],
+  "primary_selected_by_validation": "gru-attention",
+  "selection_rule": "highest validation accuracy; lowest validation Brier breaks ties",
+  "epoch_selection": "lowest validation Brier within each neural model",
+  "splits": {
+    "train": {
+      "targets": 688,
+      "first_date": "2022-02-01",
+      "last_date": "2024-10-25"
+    },
+    "validation": {
+      "targets": 147,
+      "first_date": "2024-10-28",
+      "last_date": "2025-05-30"
+    },
+    "test": {
+      "targets": 148,
+      "first_date": "2025-06-02",
+      "last_date": "2025-12-31"
+    }
+  },
+  "train_only_feature_mean": [
+    -1.8848012579933585e-05,
+    0.0003610021004916872,
+    -0.0003744515578255176,
+    0.005872884988898281,
+    0.006265099943211963,
+    0.003159172783028702
+  ],
+  "train_only_feature_scale": [
+    0.022038540293983253,
+    0.0130780090838754,
+    0.016608287629071315,
+    0.005469852845172809,
+    0.005495522831773927,
+    0.397563674704964
+  ],
+  "sources": [
+    {
+      "path": "data/external-check/RMD.csv",
+      "sha256": "5618ec043be9852199e6d8f735ae434d529d21d6da9881c069e7024ffa9bb99d"
+    }
+  ],
+  "settings": {
+    "mode": "fixed-2025",
+    "fold": 1,
+    "seed": 42,
+    "epochs_max": 20,
+    "device": "cuda",
+    "hidden_size": 32,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "patience": 5,
+    "evaluation_note": "Frozen external-symbol check on ACN and RMD; historical-date evidence"
+  },
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "note": "Frozen external-symbol check on ACN and RMD; historical-date evidence"
+}

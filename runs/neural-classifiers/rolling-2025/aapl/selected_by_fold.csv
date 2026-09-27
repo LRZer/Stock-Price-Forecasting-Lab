@@ -1,0 +1,4 @@
+fold,selected,selected_correct_days,selected_test_accuracy,primary_selected,primary_correct_days,primary_test_accuracy,baseline_correct_days,baseline_test_accuracy,test_days
+1,vanilla,44,0.440000,train-majority,52,0.520000,52,0.520000,100
+2,lstm,56,0.560000,logit-window,58,0.580000,56,0.560000,100
+3,cnn-seq2seq,52,0.520000,logit-window,49,0.490000,53,0.530000,100

@@ -1,0 +1,4 @@
+ticker,mode,primary_correct_days,primary_accuracy,primary_selected_models,selected_correct_days,baseline_correct_days,test_days,selected_accuracy,baseline_accuracy,selected_models
+GOOG,rolling-2025,161,0.536667,"gru,gbdt-window,gru-attention",167,162,300,0.556667,0.540000,"attention-is-all-you-need,attention-is-all-you-need,gru-attention"
+AAPL,rolling-2025,159,0.530000,"train-majority,logit-window,logit-window",152,161,300,0.506667,0.536667,"vanilla,lstm,cnn-seq2seq"
+TSLA,rolling-2025,145,0.483333,"train-majority,gru,tcn-residual",149,151,300,0.496667,0.503333,"vanilla-2path,gru,tcn-residual"

@@ -1,0 +1,85 @@
+{
+  "task": "P(next trading close > current close)",
+  "unchanged_close_rule": "non-up class",
+  "decision_threshold": 0.5,
+  "feature_names": [
+    "close_log_return",
+    "overnight_gap",
+    "intraday_return",
+    "high_extension",
+    "low_extension",
+    "log_volume_change"
+  ],
+  "lookback": 20,
+  "models": [
+    "train-majority",
+    "dlinear-direction",
+    "tsmixer-direction",
+    "patchtst-direction",
+    "itransformer-direction",
+    "nhits-direction",
+    "tide-direction",
+    "timesnet-direction",
+    "mamba-style-direction"
+  ],
+  "selected_by_validation": "timesnet-direction",
+  "primary_candidates": [
+    "train-majority"
+  ],
+  "primary_selected_by_validation": "train-majority",
+  "selection_rule": "highest validation accuracy; lowest validation Brier breaks ties",
+  "epoch_selection": "lowest validation Brier within each neural model",
+  "splits": {
+    "train": {
+      "targets": 688,
+      "first_date": "2022-02-01",
+      "last_date": "2024-10-25"
+    },
+    "validation": {
+      "targets": 147,
+      "first_date": "2024-10-28",
+      "last_date": "2025-05-30"
+    },
+    "test": {
+      "targets": 148,
+      "first_date": "2025-06-02",
+      "last_date": "2025-12-31"
+    }
+  },
+  "train_only_feature_mean": [
+    0.00033916581697071015,
+    -0.0005344569947434387,
+    0.0009064386208479739,
+    0.005085999334366967,
+    0.005252214072247081,
+    -0.00139914086977829
+  ],
+  "train_only_feature_scale": [
+    0.01735762891918168,
+    0.010668354328709393,
+    0.01452129464820904,
+    0.004660743590815804,
+    0.0046393562695339055,
+    0.2786573611909739
+  ],
+  "sources": [
+    {
+      "path": "data/raw/AAPL.csv",
+      "sha256": "0418f42fad680a35dd515392053a82d991a679e480ed602665ac72921e7bb69c"
+    }
+  ],
+  "settings": {
+    "mode": "fixed-2025",
+    "fold": 1,
+    "seed": 42,
+    "epochs_max": 20,
+    "device": "cuda",
+    "hidden_size": 32,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "patience": 5,
+    "evaluation_note": "Exploratory 2025 comparison after historical results were inspected; not a candidate in the frozen future evaluation"
+  },
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "note": "Exploratory 2025 comparison after historical results were inspected; not a candidate in the frozen future evaluation"
+}

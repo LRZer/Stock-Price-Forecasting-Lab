@@ -1,0 +1,5 @@
+model,mean_test_mae,std_test_mae,mean_validation_mae
+attention-is-all-you-need,2.694304,0.500217,2.766281
+naive,2.700400,0.505027,2.782067
+gru,2.713764,0.480116,2.791251
+ridge,2.797790,0.494352,2.828816

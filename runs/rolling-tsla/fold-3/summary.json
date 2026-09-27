@@ -1,0 +1,57 @@
+{
+  "task": "next observed trading day close from the preceding history window",
+  "selected_by_validation_mae": "naive",
+  "data_file": "data/raw/TSLA.csv",
+  "data_sha256": "1d75338f5b3b3d36868a3d687194b3575f308b724fa5d4e4b29c6778c1a3d884",
+  "rows": 1003,
+  "lookback": 20,
+  "splits": {
+    "train": {
+      "targets": 783,
+      "dates": [
+        "2022-02-01",
+        "2025-03-17"
+      ]
+    },
+    "validation": {
+      "targets": 100,
+      "dates": [
+        "2025-03-18",
+        "2025-08-08"
+      ]
+    },
+    "test": {
+      "targets": 100,
+      "dates": [
+        "2025-08-11",
+        "2025-12-31"
+      ]
+    }
+  },
+  "scaler": {
+    "mean_from_train_only": 244.00420298879203,
+    "std_from_train_only": 66.80296993662456
+  },
+  "settings": {
+    "rolling_fold": 3,
+    "rolling_folds": 3,
+    "validation_size": 100,
+    "test_size": 100,
+    "models": [
+      "naive",
+      "ridge",
+      "gru",
+      "attention-is-all-you-need"
+    ],
+    "seed": 42,
+    "device": "cuda",
+    "epochs_max": 15
+  },
+  "versions": {
+    "torch": "2.6.0+cu118",
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "sklearn": "1.5.0"
+  },
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU"
+}

@@ -1,0 +1,10 @@
+model,total_correct_days,total_test_days,mean_test_brier,overall_test_accuracy
+itransformer-direction,140,300,0.254070,0.466667
+dlinear-direction,147,300,0.250253,0.490000
+timesnet-direction,143,300,0.250268,0.476667
+train-majority,151,300,0.249936,0.503333
+nhits-direction,159,300,0.251027,0.530000
+tide-direction,146,300,0.252054,0.486667
+patchtst-direction,136,300,0.253175,0.453333
+tsmixer-direction,144,300,0.250990,0.480000
+mamba-style-direction,148,300,0.250584,0.493333

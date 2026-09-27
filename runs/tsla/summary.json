@@ -1,0 +1,63 @@
+{
+  "task": "next observed trading day close from the preceding history window",
+  "selected_by_validation_mae": "cnn-seq2seq",
+  "data_file": "data/raw/TSLA.csv",
+  "data_sha256": "1d75338f5b3b3d36868a3d687194b3575f308b724fa5d4e4b29c6778c1a3d884",
+  "rows": 1003,
+  "lookback": 20,
+  "splits": {
+    "train": {
+      "targets": 688,
+      "dates": [
+        "2022-02-01",
+        "2024-10-25"
+      ]
+    },
+    "validation": {
+      "targets": 147,
+      "dates": [
+        "2024-10-28",
+        "2025-05-30"
+      ]
+    },
+    "test": {
+      "targets": 148,
+      "dates": [
+        "2025-06-02",
+        "2025-12-31"
+      ]
+    }
+  },
+  "scaler": {
+    "mean_from_train_only": 229.36600988700567,
+    "std_from_train_only": 52.041116828724725
+  },
+  "settings": {
+    "models": [
+      "naive",
+      "ridge",
+      "hist-gbdt",
+      "stacked",
+      "lstm",
+      "gru",
+      "attention-is-all-you-need",
+      "cnn-seq2seq"
+    ],
+    "seed": 42,
+    "device": "cuda",
+    "epochs_max": 15,
+    "batch_size": 64,
+    "hidden_size": 32,
+    "learning_rate": 0.001,
+    "patience": 5,
+    "train_fraction": 0.7,
+    "validation_fraction": 0.15
+  },
+  "versions": {
+    "torch": "2.6.0+cu118",
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "sklearn": "1.5.0"
+  },
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU"
+}

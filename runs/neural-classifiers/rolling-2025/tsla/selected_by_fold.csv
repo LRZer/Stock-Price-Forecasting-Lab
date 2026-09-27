@@ -1,0 +1,4 @@
+fold,selected,selected_correct_days,selected_test_accuracy,primary_selected,primary_correct_days,primary_test_accuracy,baseline_correct_days,baseline_test_accuracy,test_days
+1,vanilla-2path,47,0.470000,train-majority,43,0.430000,43,0.430000,100
+2,gru,52,0.520000,gru,52,0.520000,54,0.540000,100
+3,tcn-residual,50,0.500000,tcn-residual,50,0.500000,54,0.540000,100

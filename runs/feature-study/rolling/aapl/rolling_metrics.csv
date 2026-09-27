@@ -1,0 +1,6 @@
+model,mean_validation_mae,mean_test_mae,folds_beating_naive,mean_test_mae_improvement_vs_naive_pct
+naive,2.782067,2.700400,0,0.000000
+ridge-close,2.774581,2.699237,2,0.043061
+ridge-ohlcv,2.797813,2.731952,1,-1.168435
+gbdt-close,2.805103,2.677833,2,0.835691
+gbdt-ohlcv,2.843434,2.738481,1,-1.410180

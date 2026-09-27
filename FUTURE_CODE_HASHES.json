@@ -1,0 +1,21 @@
+{
+  "frozen_at": "2026-09-27",
+  "files": {
+    "FUTURE_EVAL_PROTOCOL.md": "e70a2e3730d5ccacf8f051809f2efe993b26d93fc40c4393279af66115dd97d4",
+    "FUTURE_FREEZE_CHANGELOG.md": "8314054a375f7148eeaa5998f9fc8f5de1013144fe41240e691c140935b51caa",
+    "FUTURE_BASE_HASHES.json": "d8081f603f8a87e2a6958d23356dbd00968659b3db752090627dad8e0c72f1cc",
+    "DATA_PROVENANCE.md": "5651408dd3fb86751c46cc906c50f3771f042346e0b3fa0f0c0273c8cbcedd1a",
+    "requirements.txt": "c6a37bde5f22def2853f58e6bc13a72d626642c1e1afaac7acdee7f509af4c74",
+    "data/raw/SOURCES.json": "ed6c9f22d8a29893abcff270d3b9ff6b0c8fa515456894cf89ccc28d198135ff",
+    "stocklab/prospective_check.py": "70f656a806a530e0ea7fb8cc85312ce01599dfb298fc21e9fb3e9f18b58182d8",
+    "stocklab/neural_direction.py": "7ce9bd1069efa3b4fccc06925524124f9392b9dd4749a67bf3e9216a8101561e",
+    "stocklab/neural_direction_data.py": "2d557b94d0c458dd7699606c0f3049f78a2c248bbd7c5fa6157efb631badf163",
+    "stocklab/models.py": "01641880b7cac90d082c39b1665128d70c9bdc90934ed32277292a3448b466d3",
+    "stocklab/neural_diagnostics.py": "487a2cb120eef05ff4f2b447cefdb48536452507eb08cb0ed9cec7b9cfbbf603",
+    "stocklab/direction_study.py": "57788484d4e670f5c64a7e8895d39f0998c7c7f9ca816c6652e8beb63943cdfe",
+    "stocklab/features.py": "f86a5f0f34134a828f14234cacf523edf13a540eacf29f03778538d450cb3b5d",
+    "stocklab/uncertainty.py": "026efdc1064d63031d6a82619bb04728b1a574365fef383d1882edcd2344e335",
+    "scripts/download_data.py": "c96f21868001e4ec98a72ca7b70b400fc111f50623cd4254314a825852531e28",
+    "scripts/audit_source_drift.py": "e1a326a4f0d796d9e9752e609de63932f553a7a6eda478caa0b6c4c429b29142"
+  }
+}

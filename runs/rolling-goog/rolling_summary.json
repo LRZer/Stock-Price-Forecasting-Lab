@@ -1,0 +1,15 @@
+{
+  "data_file": "data/raw/GOOG.csv",
+  "folds": 3,
+  "test_size": 100,
+  "validation_size": 100,
+  "test_periods_are_disjoint": true,
+  "later_folds_refit_on_all_previous_observed_prices": true,
+  "models": [
+    "naive",
+    "ridge",
+    "gru",
+    "attention-is-all-you-need"
+  ],
+  "device": "cuda"
+}

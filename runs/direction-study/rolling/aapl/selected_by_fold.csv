@@ -1,0 +1,4 @@
+fold,selected_by_validation,selected_correct_days,selected_test_accuracy,baseline_test_accuracy
+1,train-majority,52,0.520000,0.520000
+2,gbdt-ohlcv,49,0.490000,0.560000
+3,logit-close,58,0.580000,0.530000

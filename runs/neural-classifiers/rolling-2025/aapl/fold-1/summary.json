@@ -1,0 +1,103 @@
+{
+  "task": "P(next trading close > current close)",
+  "unchanged_close_rule": "non-up class",
+  "decision_threshold": 0.5,
+  "feature_names": [
+    "close_log_return",
+    "overnight_gap",
+    "intraday_return",
+    "high_extension",
+    "low_extension",
+    "log_volume_change"
+  ],
+  "lookback": 20,
+  "models": [
+    "train-majority",
+    "logit-window",
+    "gbdt-window",
+    "lstm",
+    "bidirectional-lstm",
+    "lstm-2path",
+    "gru",
+    "bidirectional-gru",
+    "gru-2path",
+    "vanilla",
+    "bidirectional-vanilla",
+    "vanilla-2path",
+    "lstm-seq2seq",
+    "bidirectional-lstm-seq2seq",
+    "lstm-seq2seq-vae",
+    "gru-seq2seq",
+    "bidirectional-gru-seq2seq",
+    "gru-seq2seq-vae",
+    "attention-is-all-you-need",
+    "cnn-seq2seq",
+    "dilated-cnn-seq2seq",
+    "tcn-residual",
+    "gru-attention"
+  ],
+  "selected_by_validation": "vanilla",
+  "primary_candidates": [
+    "train-majority",
+    "logit-window",
+    "gbdt-window",
+    "gru",
+    "tcn-residual",
+    "gru-attention"
+  ],
+  "primary_selected_by_validation": "train-majority",
+  "selection_rule": "highest validation accuracy; lowest validation Brier breaks ties",
+  "epoch_selection": "lowest validation Brier within each neural model",
+  "splits": {
+    "train": {
+      "targets": 583,
+      "first_date": "2022-02-01",
+      "last_date": "2024-05-28"
+    },
+    "validation": {
+      "targets": 100,
+      "first_date": "2024-05-29",
+      "last_date": "2024-10-18"
+    },
+    "test": {
+      "targets": 100,
+      "first_date": "2024-10-21",
+      "last_date": "2025-03-17"
+    }
+  },
+  "train_only_feature_mean": [
+    7.116054489905587e-05,
+    -0.0007064448676936409,
+    0.0008161354173468416,
+    0.005060644393950317,
+    0.005137536919480933,
+    -0.0011483506867964674
+  ],
+  "train_only_feature_scale": [
+    0.01765262811560685,
+    0.010292467654506785,
+    0.014700298813783031,
+    0.004492633412393244,
+    0.004604604211698882,
+    0.2550897197954992
+  ],
+  "sources": [
+    {
+      "path": "data/raw/AAPL.csv",
+      "sha256": "0418f42fad680a35dd515392053a82d991a679e480ed602665ac72921e7bb69c"
+    }
+  ],
+  "settings": {
+    "mode": "rolling-2025",
+    "fold": 1,
+    "seed": 42,
+    "epochs_max": 20,
+    "device": "cuda",
+    "hidden_size": 32,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "patience": 5
+  },
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "note": "The 2025 period has been inspected before; results are retrospective learning evidence"
+}

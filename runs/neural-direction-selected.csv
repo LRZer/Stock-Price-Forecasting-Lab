@@ -1,0 +1,4 @@
+ticker,selected_by_validation_accuracy,selected_test_correct_days,selected_test_accuracy,majority_test_accuracy
+GOOG,bidirectional-vanilla,63,0.425676,0.574324
+AAPL,train-majority,82,0.554054,0.554054
+TSLA,lstm-2path,69,0.466216,0.533784

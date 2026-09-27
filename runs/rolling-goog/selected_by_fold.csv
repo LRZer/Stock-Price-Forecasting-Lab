@@ -1,0 +1,4 @@
+fold,test_start,test_end,selected_by_validation,selected_test_mae,naive_test_mae
+1,2024-10-21,2025-03-17,attention-is-all-you-need,2.817444,2.785000
+2,2025-03-18,2025-08-08,gru,2.667749,2.658200
+3,2025-08-11,2025-12-31,attention-is-all-you-need,3.482853,3.505500

@@ -1,0 +1,2 @@
+# Frozen protocol files use byte-level SHA-256; preserve working-tree bytes on every OS.
+* -text

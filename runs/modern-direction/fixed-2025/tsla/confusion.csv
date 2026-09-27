@@ -1,0 +1,10 @@
+model,true_non_up,false_up,missed_up,true_up,actual_up_days,predicted_up_days,up_recall,non_up_recall
+train-majority,0,69,0,79,79,148,1.000000,0.000000
+dlinear-direction,49,20,56,23,79,43,0.291139,0.710145
+tsmixer-direction,33,36,37,42,79,78,0.531646,0.478261
+patchtst-direction,32,37,40,39,79,76,0.493671,0.463768
+itransformer-direction,33,36,36,43,79,79,0.544304,0.478261
+nhits-direction,32,37,38,41,79,78,0.518987,0.463768
+tide-direction,30,39,36,43,79,82,0.544304,0.434783
+timesnet-direction,62,7,74,5,79,12,0.063291,0.898551
+mamba-style-direction,51,18,53,26,79,44,0.329114,0.739130

@@ -1,0 +1,6 @@
+model,total_correct_days,total_test_days,mean_test_brier,mean_test_balanced_accuracy,overall_test_accuracy
+train-majority,151,300,0.249954,0.500000,0.503333
+logit-close,150,300,0.251630,0.498358,0.500000
+logit-ohlcv,165,300,0.249229,0.555426,0.550000
+gbdt-close,149,300,0.261176,0.503245,0.496667
+gbdt-ohlcv,153,300,0.263635,0.518624,0.510000

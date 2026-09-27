@@ -1,0 +1,57 @@
+{
+  "task": "next observed trading day close from the preceding history window",
+  "selected_by_validation_mae": "attention-is-all-you-need",
+  "data_file": "data/raw/AAPL.csv",
+  "data_sha256": "0418f42fad680a35dd515392053a82d991a679e480ed602665ac72921e7bb69c",
+  "rows": 1003,
+  "lookback": 20,
+  "splits": {
+    "train": {
+      "targets": 583,
+      "dates": [
+        "2022-02-01",
+        "2024-05-28"
+      ]
+    },
+    "validation": {
+      "targets": 100,
+      "dates": [
+        "2024-05-29",
+        "2024-10-18"
+      ]
+    },
+    "test": {
+      "targets": 100,
+      "dates": [
+        "2024-10-21",
+        "2025-03-17"
+      ]
+    }
+  },
+  "scaler": {
+    "mean_from_train_only": 166.4150248756219,
+    "std_from_train_only": 17.574433916543185
+  },
+  "settings": {
+    "rolling_fold": 1,
+    "rolling_folds": 3,
+    "validation_size": 100,
+    "test_size": 100,
+    "models": [
+      "naive",
+      "ridge",
+      "gru",
+      "attention-is-all-you-need"
+    ],
+    "seed": 42,
+    "device": "cuda",
+    "epochs_max": 15
+  },
+  "versions": {
+    "torch": "2.6.0+cu118",
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "sklearn": "1.5.0"
+  },
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU"
+}

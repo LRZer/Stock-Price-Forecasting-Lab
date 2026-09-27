@@ -1,0 +1,4 @@
+ticker,mode,primary_correct_days,primary_accuracy,primary_selected_models,selected_correct_days,baseline_correct_days,test_days,selected_accuracy,baseline_accuracy,selected_models
+GOOG,fixed-2025,92,0.621622,gru-attention,92,85,148,0.621622,0.574324,gru-attention
+AAPL,fixed-2025,67,0.452703,gbdt-window,79,82,148,0.533784,0.554054,cnn-seq2seq
+TSLA,fixed-2025,76,0.513514,logit-window,72,79,148,0.486486,0.533784,bidirectional-gru-seq2seq

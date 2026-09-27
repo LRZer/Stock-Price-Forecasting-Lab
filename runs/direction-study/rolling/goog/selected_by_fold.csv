@@ -1,0 +1,4 @@
+fold,selected_by_validation,selected_correct_days,selected_test_accuracy,baseline_test_accuracy
+1,gbdt-close,50,0.500000,0.510000
+2,logit-close,56,0.560000,0.560000
+3,logit-ohlcv,51,0.510000,0.550000
