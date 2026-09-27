@@ -348,6 +348,18 @@
 | `gbdt-window` | 72/148 = 48.6% | 48.7% | 0.2668 | 56.1% | [查看](runs/external-symbol-check/rmd/diagnostics/models/gbdt-window.png) |
 | `tcn-residual` | 68/148 = 45.9% | 46.1% | 0.2505 | 58.8% | [查看](runs/external-symbol-check/rmd/diagnostics/models/tcn-residual.png) |
 
+## 2026 年旧实验归档摘要
+
+2026-01-02—2026-09-25 共 184 个交易日，补充 CSV 已删除，逐日历史报告也未放入公开仓库。下面只记录删除前保存的汇总；这不是 28 类新网络的测试。
+
+| 股票 | 价格任务：所选 MAE / 昨日价格 MAE | 旧版涨跌任务：正确天数 / 多数基线 |
+| --- | ---: | ---: |
+| GOOG | 4.890 / 4.890 | 87/184 / 87/184 |
+| AAPL | 3.531 / 3.541 | 95/184 / 98/184 |
+| TSLA | 8.692 / 8.469 | 100/184 / 93/184 |
+
+解释见 [ANALYSIS.md](ANALYSIS.md) 与 [DIRECTION_RESULTS.md](DIRECTION_RESULTS.md)。
+
 ## 其他实验与旧任务
 
 - GRU 5/20 日 × 收盘收益率/OHLCV × 3 随机种子：[108 组逐折指标](runs/ablation-study/gru/metrics.csv)、[逐日预测](runs/ablation-study/gru/predictions.csv)。
