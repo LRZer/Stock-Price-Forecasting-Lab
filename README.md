@@ -1,7 +1,6 @@
 # 股票价格预测模型实验室 / Stock Price Forecasting Lab
 
-用小规模股票日线数据学习**时间序列建模与正确评测**。任务：已知今天收盘及此前 20 个交易日的历史，预测**下一交易日的收盘价是否严格上涨**，同时输出上涨概率。相等归入“未上涨”，判断阈值为 50%。旧版预测下一日收盘价的实验也保留，便于比较 MAE 等价格误差。
-
+用小规模股票日线数据学习**时间序列建模与正确评测**。任务：利用截至今天的过去 20 个交易日，预测**下一交易日的收盘价是否严格上涨**，同时输出上涨概率。相等归入“未上涨”，判断阈值为 50%。旧版预测下一日收盘价的实验也保留，便于比较 MAE 等价格误差。
 
 > 详细资料：[全部测试结果与指标](docs/results/RESULTS_INDEX.md) · [全部结果图像](docs/results/RESULTS_GALLERY.md)
 
@@ -27,18 +26,49 @@
 
 数据来自 [Pubmarks Datasets](https://github.com/Pubmarks/datasets) 的日线文件。公开仓库保存来源记录、哈希与结果，**不再分发原始股票 CSV**；运行前按[数据说明](data/README.md)下载 2022—2025 年的小切片。上游若修订历史行，新下载文件可能与冻结哈希不同，旧结果就不能精确重算。此前用于早期分析的 2026 年补充 CSV 已按要求删除，其逐日历史归档也不放入公开仓库；2026 年已看过的结果不能充当新模型的首次样本外测试。
 
+## 技术流程
+
+```mermaid
+flowchart LR
+    A[OHLCV 日线] --> B[逐日计算 6 项相对特征]
+    B --> C[构造 20 日历史窗口和次日标签]
+    C --> D[按目标日期划分训练、验证、测试]
+    D --> E[仅用训练期拟合标准化器并训练]
+    E --> F[验证期早停与选模]
+    F --> G[测试期输出概率、指标和图表]
+```
+
+1. **特征与标签**：对第 `t` 天计算 `log(Cₜ/Cₜ₋₁)`、`log(Oₜ/Cₜ₋₁)`、`log(Cₜ/Oₜ)`、`log(Hₜ/max(Oₜ,Cₜ))`、`log(min(Oₜ,Cₜ)/Lₜ)` 和 `log(1+Vₜ)−log(1+Vₜ₋₁)`；`O/H/L/C/V` 分别是开高低收与成交量。样本输入为截至第 `t` 天的 **20×6** 矩阵，标签是 `1[Cₜ₊₁>Cₜ]`。窗口首日的收益、跳空和成交量变化会引用前一交易日的数据；第 `t+1` 天的信息不进入输入。实现见[数据构造](stocklab/neural_direction_data.py)。
+2. **时间与标准化**：以标签对应的目标日期划分，训练日早于验证日，验证日早于测试日；滚动实验在每轮重新划分。六项特征的均值、标准差只用该轮训练期可观察的逐日数据计算，再应用到验证和测试窗口；测试期不参与参数拟合或选模。
+3. **训练与选择**：20 类教学网络使用二元交叉熵、AdamW；默认隐藏宽度 32、最多 20 轮、批量 64、验证期 Brier 连续 5 轮不改善即早停。每个网络取验证期 Brier 最低的轮次；固定六候选再按验证准确率选模型，同分比较 Brier。输出标量经 Sigmoid 得上涨概率。传统模型用同一历史窗口的**摘要特征**（最后一天、最近 5 天均值、全窗口均值与标准差），并非直接接收 20×6 张量。实现见[训练与评测](stocklab/neural_direction.py)。
+4. **测试报告**：测试期只用于报告，不参与训练、早停或选模。仓库保存各候选的逐日概率、方向与指标，以及混淆矩阵、校准分箱和图像。现代结构的八模型实验单独报告，不参与事先固定的六候选结论。
+
 ## 模型网络
 
-| 组别 | 模型 |
-| --- | --- |
-| 原项目 18 类网络的 PyTorch 教学重实现 | 普通、双向、双路径 RNN/LSTM/GRU；LSTM/GRU Seq2Seq 与 VAE 版本；注意力、CNN Seq2Seq、空洞 CNN Seq2Seq。旧 TensorFlow 实现没有逐行照搬。 |
-| 补充的 2 类网络 | `tcn-residual`（残差时间卷积）、`gru-attention`（注意力汇总 GRU）。 |
-| 8 类现代结构的轻量分类改编 | `dlinear-direction`、`tsmixer-direction`、`patchtst-direction`、`itransformer-direction`、`nhits-direction`、`tide-direction`、`timesnet-direction`、`mamba-style-direction`。这些改编不等于原论文完整实现，最后一种也不是官方 Mamba。 |
-| 同日期比较对象 | `train-majority`（多数方向）、`logit-window`（逻辑回归）、`gbdt-window`（梯度提升树）。 |
+方向任务共有 **20 类教学网络、8 类现代结构改编和 3 个简单比较对象**。前 20 类共用输入 `20×6`、输出一个上涨 logit；其中原项目的 18 类也支持旧版价格任务。以下说明对应[当前代码](stocklab/models.py)的实际结构，不表示复现了旧 TensorFlow 权重或原论文的完整配置。
 
-现代结构的原论文链接、改编范围和逐项成绩见[现代结构说明](docs/results/MODERN_DIRECTION_MODELS.md)。主要结论事先固定比较六个候选：`train-majority`、`logit-window`、`gbdt-window`、`gru`、`tcn-residual`、`gru-attention`。其余网络用于认识结构和观察现象；不要根据测试成绩反选赢家。
+| 网络组 | 数量 | 当前实现如何处理 20 日历史 |
+| --- | ---: | --- |
+| RNN、GRU、LSTM | 9 | 每种分别有单向、双向和双路径版本。双向只在**已观察的 20 日窗口内**双向编码；双路径另对首个特征的日间变化编码，然后合并两路末状态。 |
+| LSTM/GRU Seq2Seq | 6 | 每种有普通、双向编码器和 VAE 版本；编码历史后只解码**一步**，VAE 版本增加潜变量及 KL 损失，不是多日生成模型。 |
+| `attention-is-all-you-need` | 1 | 输入投影加可学习位置向量，经过一层四头 Transformer 编码器，用末位置表示分类。 |
+| `cnn-seq2seq`、`dilated-cnn-seq2seq` | 2 | 两层时间卷积后做全局平均池化；后者用膨胀卷积。名称沿袭原项目，**当前实现没有显式 Seq2Seq 解码器**。 |
+| `tcn-residual`、`gru-attention` | 2 | 前者用膨胀率 1/2/4 的因果残差卷积并读取末时刻；后者用 GRU 编码，按注意力权重汇总各天，再与末状态一起分类。只用于方向任务。 |
+
+八类现代结构单独组成回顾性教学实验，均缩小为适合 20 日、6 特征的二分类网络：
+
+| 结构 | 当前分类改编的核心操作 |
+| --- | --- |
+| `dlinear-direction`、`tsmixer-direction` | 前者分解趋势与季节残差后线性映射；后者交替混合时间维和特征维。 |
+| `patchtst-direction`、`itransformer-direction` | 前者按特征切重叠时间片，再对时间片做注意力；后者把每个特征的整段历史当作一个 token，在特征间做注意力。 |
+| `nhits-direction`、`tide-direction` | 前者多尺度池化并逐块回投残差；后者用特征投影、密集残差编码/解码与线性跳连。 |
+| `timesnet-direction`、`mamba-style-direction` | 前者用候选周期重排时间序列并做二维卷积；后者用深度卷积与逐步选择性状态更新。后者是纯 PyTorch 的 Mamba 风格教学实现，**不是官方 Mamba**。 |
+
+同日期比较对象是 `train-majority`（训练期多数方向及其上涨频率）、`logit-window`（逻辑回归）和 `gbdt-window`（梯度提升树）。现代结构的原论文链接、实现差异和逐项成绩见[现代结构说明](docs/results/MODERN_DIRECTION_MODELS.md)。主要结论事先固定比较六个候选：`train-majority`、`logit-window`、`gbdt-window`、`gru`、`tcn-residual`、`gru-attention`。其余网络用于认识结构和观察现象；不要根据测试成绩反选赢家。
 
 ## 主要测试结果
+
+**指标读法**：准确率是猜对天数 ÷ 测试天数；平衡准确率是“实际上涨日的猜对率”和“实际未上涨日的猜对率”的平均值，可以看出模型是否只偏向多数类。Brier 误差是所有日期的 `(上涨概率−实际标签)²` 的平均值，越小越好；它衡量概率预测误差，但单个 Brier 值不能代替校准图。预测上涨比例是模型判“涨”的天数比例；混淆矩阵分别列出实际涨/不涨被判成涨/不涨的天数。
 
 下表是**每次仅用验证集从固定六候选中选一个**后的测试表现。滚动列汇总三轮各自所选模型的正确天数，不代表同一组权重连续预测 300 天。
 
@@ -82,10 +112,11 @@
 
 ## 本地运行与复现
 
-已在 Windows 的 Conda `pytorch` 环境验证：Python 3.11.9、PyTorch 2.6.0+cu118、NVIDIA GeForce RTX 4060 Laptop GPU（8 GB）。其他机器使用 Python 3.11 并安装[依赖清单](requirements.txt)；GPU 版 PyTorch 请按[官方安装说明](https://pytorch.org/get-started/locally/)选择合适版本。
+已在 Windows 的 Conda `pytorch` 环境验证：Python 3.11.9、PyTorch 2.6.0+cu118、NVIDIA GeForce RTX 4060 Laptop GPU（8 GB）。新机器可建立 Python 3.11 环境并安装[依赖清单](requirements.txt)；GPU 版 PyTorch 请按[官方安装说明](https://pytorch.org/get-started/locally/)选择与本机驱动匹配的版本。已有适用环境时，直接激活该环境即可。
 
 ```powershell
-conda activate pytorch
+conda create -n stocklab python=3.11 -y
+conda activate stocklab
 pip install -r requirements.txt
 python scripts/download_data.py
 python scripts/download_data.py --tickers ACN RMD --output-dir data/external-check
